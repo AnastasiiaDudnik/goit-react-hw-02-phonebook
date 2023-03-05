@@ -1,21 +1,3 @@
-/* eslint-disable react/require-render-return */
-// export const App = () => {
-//   return (
-//     <div
-//       style={{
-//         height: '100vh',
-//         display: 'flex',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         fontSize: 40,
-//         color: '#010101'
-//       }}
-//     >
-//       React homework template
-//     </div>
-//   );
-// };
-
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
@@ -40,15 +22,17 @@ export class App extends Component {
   };
 
   addcontact = ({ name, number }) => {
-    const contact = {
+    const newContact = {
       id: nanoid(),
       name,
       number,
     };
 
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
-    }));
+    this.state.contacts.filter(contact => contact.name === name)
+      ? alert(`${newContact.name} is already in your contacts.`)
+      : this.setState(({ contacts }) => ({
+          contacts: [newContact, ...contacts],
+        }));
   };
 
   onFilterChange = evt => {
