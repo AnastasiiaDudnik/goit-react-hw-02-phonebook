@@ -29,7 +29,7 @@ export class App extends Component {
       number,
     };
 
-    this.state.contacts.filter(contact => contact.name === name)
+    this.state.contacts.find(contact => contact.name === name)
       ? alert(`${newContact.name} is already in your contacts.`)
       : this.setState(({ contacts }) => ({
           contacts: [newContact, ...contacts],
